@@ -10,13 +10,13 @@ document.getElementById('exercise11.1').onclick=function(){
             alert('Площадь не может быть отрицательной')
         } else {
             rectangle.a = S/rectangle.b;
-            return rectangle.a;
+            alert(rectangle.a);
         }
     }
 
     alert('Сейчас стороны равны: ' + rectangle.a + ' и '+ rectangle.b);
     let s = prompt('Введите новую площадь прямоугольника:', '');
-    alert('Теперь сторона А = ' + changeSide(s));
+    changeSide(s);
 }
 
 /**Задача №11.2 */
