@@ -79,7 +79,7 @@ getAttributes(searchField);
 
 
 /**
- * 2. сниппет для MDN - будет логировать с помощью console.log имена опубликованных блогов (см. скрин)
+ * 2. сниппет для MDN - будет логировать с помощью console.log имена опубликованных блогов
  */
 
 topicNames = document.querySelectorAll("#content > div > div > div > div > ul > li > h2");
