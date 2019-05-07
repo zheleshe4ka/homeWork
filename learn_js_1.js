@@ -70,7 +70,6 @@ logElementClass(loginField);
 /**
  * 1. функция get​Attributes - будет возвращать Object, свойства которого будут повторять атрибуты, указанного элемента.
  */
-
 function getAttributes(element) {
     return element.attributes;
 }
@@ -81,7 +80,6 @@ getAttributes(searchField);
 /**
  * 2. сниппет для MDN - будет логировать с помощью console.log имена опубликованных блогов
  */
-
 topicNames = document.querySelectorAll("#content > div > div > div > div > ul > li > h2");
 
 let getTopicNames = elements => {
@@ -91,3 +89,18 @@ let getTopicNames = elements => {
 };
 
 getTopicNames(topicNames);
+
+
+
+/**
+ * Т.е. на вход будет ожидаться то, что раньше ожидалось для createJSPath, ориентируясь на полученный массив функция getAttributes получит нужный нам элемент и дальше всё как раньше.
+ Для этого лучше всего реализовать функцию, которая, опять же, по массиву селекторов будет возвращать HTMLElement
+ */
+function getElement(selectors) {
+    return document.querySelector(selectors.reduce((res, element) =>
+      res.concat(element !== shadowRoot ? `querySelector("${element}")` : shadowRoot).join('.')));
+}
+
+function getAttributes2(selectors) {
+    return getElement(selectors).attributes;
+}
