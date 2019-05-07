@@ -13,10 +13,6 @@ const contextMenuSelectors = ["#mainApp", 'shadowRoot', "#mailApp", 'shadowRoot'
 
 const shadowRoot = 'shadowRoot';
 
-/**
- * @param selectors - компактный селектор элемента
- * @returns {string} - полный селектор элемента
- */
 let createJSPathCycle = (selectors) => {
     let arr = ['document'];
     for(let i = 0; i < selectors.length; i++){
@@ -25,10 +21,6 @@ let createJSPathCycle = (selectors) => {
     return arr.join('.');
 }
 
-/**
- * @param selectors - компактный селектор элемента
- * @returns {string} - полный селектор элемента
- */
 let createJSPathForEach = (selectors) => {
     let arr = ['document'];
     selectors.forEach(element => {
@@ -37,10 +29,6 @@ let createJSPathForEach = (selectors) => {
     return arr.join('.');
 }
 
-/**
- * @param selectors - компактный селектор элемента
- * @returns {string} - полный селектор элемента
- */
 let createJSPathMap = (selectors) => {
     const arr = selectors.map(element =>
       element !== shadowRoot ? `querySelector("${element}")` : shadowRoot);
@@ -48,10 +36,6 @@ let createJSPathMap = (selectors) => {
     return arr.join('.');
 }
 
-/**
- * @param selectors - компактный селектор элемента
- * @returns {string} - полный селектор элемента
- */
 let createJSPathReduce = (selectors) => {
     return selectors.reduce((res, element) =>
         res.concat(element !== shadowRoot ? `querySelector("${element}")` : shadowRoot),
