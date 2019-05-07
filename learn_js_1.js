@@ -70,3 +70,24 @@ logElementClass(loginField);
 /**
  * 1. функция get​Attributes - будет возвращать Object, свойства которого будут повторять атрибуты, указанного элемента.
  */
+
+function getAttributes(element) {
+    return element.attributes;
+}
+
+getAttributes(searchField);
+
+
+/**
+ * 2. сниппет для MDN - будет логировать с помощью console.log имена опубликованных блогов (см. скрин)
+ */
+
+topicNames = document.querySelectorAll("#content > div > div > div > div > ul > li > h2");
+
+let getTopicNames = elements => {
+    elements.forEach(element => {
+        console.log(element.textContent);
+    });
+};
+
+getTopicNames(topicNames);
