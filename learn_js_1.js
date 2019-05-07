@@ -5,25 +5,24 @@ const contextMenuSelectors = ["#mainApp", 'shadowRoot', "#mailApp", 'shadowRoot'
 const shadowRoot = 'shadowRoot';
 
 let createJSPathCycle = (selectors) => {
-    let arr = [];
+    let arr = ['document'];
     for(let i = 0; i < selectors.length; i++){
-        arr[i] = selectors[i] != shadowRoot ? `querySelector("${selectors[i]}")` : shadowRoot;
+        arr.push(selectors[i] !== shadowRoot ? `querySelector("${selectors[i]}")` : shadowRoot);
     }
-    arr.unshift('document');    
     return arr.join('.');
 }
 
 let createJSPathForEach = (selectors) => {
     let arr = ['document'];
     selectors.forEach(element => {
-        element != shadowRoot ? arr.push(`querySelector("${element}")`) : arr.push(shadowRoot);
+        arr.push(element !== shadowRoot ? (`querySelector("${element}")`) : shadowRoot);
     });
     return arr.join('.');
 }
 
 let createJSPathMap = (selectors) => {
     const arr = selectors.map(element =>
-        element != shadowRoot ? `querySelector("${element}")` : shadowRoot);
+      element !== shadowRoot ? `querySelector("${element}")` : shadowRoot);
     arr.unshift('document');
     return arr.join('.');
 }
@@ -31,6 +30,6 @@ let createJSPathMap = (selectors) => {
 
 let createJSPathReduce = (selectors) => {
     return selectors.reduce((res, element) =>
-        element != shadowRoot ? res.concat(`querySelector("${element}")`) : res.concat(shadowRoot),
-        ['document']).join('.');
+        res.concat(element !== shadowRoot ? `querySelector("${element}")` : shadowRoot),
+      ['document']).join('.');
 }
